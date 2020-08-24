@@ -22,6 +22,9 @@ set_property(DIRECTORY PROPERTY EP_BASE ${CMAKE_BINARY_DIR}/subprojects)
 set(STAGED_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/stage)
 message(STATUS "${PROJECT_NAME} staged install: ${STAGED_INSTALL_PREFIX}")
 
+set(Boost_MINIMUM_REQUIRED ${BOOST_VERSION})
+add_subdirectory(boost)
+
 add_subdirectory(catch)
 
 add_subdirectory(spdlog)
