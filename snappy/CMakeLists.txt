@@ -1,21 +1,21 @@
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
 include(Versions)
-find_package(catch REQUIRED QUIET)
+find_package(snappy REQUIRED QUIET)
 
-if (catch_FOUND)
-    message("-- Found catch2 library.")
-    add_library(catch_external INTERFACE)
+if (snappy_FOUND)
+    message("-- Found snappy library.")
+    add_library(snappy_external INTERFACE)
 else ()
-    message(STATUS "Catch2 TAG: ${CATCH_TAG} could not be located.")
+    message(STATUS "snappy TAG: ${SNAPPY_TAG} could not be located.")
     include(ExternalProject)
-    set(EXTERNAL_INSTALL_LOCATION ${STAGED_INSTALL_PREFIX}/catch)
-    ExternalProject_Add(catch_external
+    set(EXTERNAL_INSTALL_LOCATION ${STAGED_INSTALL_PREFIX}/snappy)
+    ExternalProject_Add(snappy_external
             PREFIX
                 ${EXTERNAL_INSTALL_LOCATION}
             GIT_REPOSITORY
-                ${CATCH_URL}
+                ${SNAPPY_URL}
             GIT_TAG
-                ${CATCH_TAG}
+                ${SNAPPY_TAG}
             GIT_SUBMODULES_RECURSE
                 1
             GIT_SHALLOW
@@ -38,18 +38,17 @@ else ()
                 -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
             CMAKE_CACHE_ARGS
                 -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS})
-    ExternalProject_Get_Property(catch_external source_dir)
-    set(CATCH_ROOT ${EXTERNAL_INSTALL_LOCATION}
-            CACHE PATH "Path to internally built catch installation root"
+    set(SNAPPY_ROOT ${EXTERNAL_INSTALL_LOCATION}
+            CACHE PATH "Path to internally built snappy installation root"
             FORCE)
-    set(CATCH_INCLUDE_DIR ${CATCH_ROOT}/include
-            CACHE PATH "Path to internally built catch include directories"
+    set(SNAPPY_INCLUDE_DIR ${SNAPPY_ROOT}/include
+            CACHE PATH "Path to internally built snappy include directories"
             FORCE)
-    set(CATCH_LIB_PATH ${CATCH_ROOT}/lib
-            CACHE PATH "Path to internally built catch library directories"
+    set(SNAPPY_LIB_PATH ${SNAPPY_ROOT}/lib
+            CACHE PATH "Path to internally built snappy library directories"
             FORCE)
-    set(CATCH_CONFIG_DIR ${CATCH_LIB_PATH}/cmake/Catch2
-            CACHE PATH "Path to internally built catch library config directories"
+    set(SNAPPY_CONFIG_DIR ${SNAPPY_LIB_PATH}/cmake/snappy
+            CACHE PATH "Path to internally built snappy library config directories"
             FORCE)
     # Unset internal variables
     unset(EXTERNAL_INSTALL_LOCATION)

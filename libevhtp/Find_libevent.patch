@@ -1,0 +1,20 @@
+Index: CMakeLists.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CMakeLists.txt	(revision f78d0a86778e277c75c8d0c14e7256bafb4b37e8)
++++ CMakeLists.txt	(date 1602968473523)
+@@ -54,10 +54,10 @@
+     parser.c
+     log.c)
+ 
+-find_package(LibEvent REQUIRED)
++find_package(Libevent CONFIG REQUIRED)
+ list(APPEND LIBEVHTP_EXTERNAL_LIBS ${LIBEVENT_LIBRARIES})
+ list(APPEND LIBEVHTP_EXTERNAL_INCLUDES ${LIBEVENT_INCLUDE_DIRS})
+-list(APPEND package_deps LibEvent)
++list(APPEND package_deps Libevent)
+ 
+ set(evhtp_dir_headers
+   "include/evhtp/evhtp.h"

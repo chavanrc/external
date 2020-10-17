@@ -1,0 +1,25 @@
+From b0cb34cf2c438d7625370cc3228ab52c3c5f0a45 Mon Sep 17 00:00:00 2001
+From: "rajendra.chavan" <rajendra.chavan@rksv.in>
+Date: Thu, 9 Jul 2020 10:52:13 +0530
+Subject: [PATCH] Added sasl2 dependency
+
+---
+ cmake/FindRdKafka.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/FindRdKafka.cmake b/cmake/FindRdKafka.cmake
+index 9634c93..8437f30 100644
+--- a/cmake/FindRdKafka.cmake
++++ b/cmake/FindRdKafka.cmake
+@@ -55,7 +55,7 @@ try_compile(RdKafka_FOUND ${CMAKE_CURRENT_BINARY_DIR}
+ 
+ if (RdKafka_FOUND)
+     add_library(RdKafka::rdkafka ${RDKAFKA_LIBRARY_TYPE} IMPORTED GLOBAL)
+-    set(RDKAFKA_DEPENDENCIES pthread rt ssl crypto dl z)
++    set(RDKAFKA_DEPENDENCIES pthread rt ssl crypto dl z sasl2 m)
+     set_target_properties(RdKafka::rdkafka PROPERTIES
+             IMPORTED_NAME RdKafka
+             IMPORTED_LOCATION "${RdKafka_LIBRARY_PATH}"
+-- 
+2.17.1
+

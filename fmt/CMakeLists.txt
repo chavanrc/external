@@ -1,21 +1,21 @@
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
 include(Versions)
-find_package(nlohmann REQUIRED QUIET)
+find_package(fmt REQUIRED QUIET)
 
-if (nlohmann_FOUND)
-    message("-- Found nlohmann library.")
-    add_library(nlohmann_external INTERFACE)
-else ()
-    message(STATUS "Nlohmann TAG: ${NLOHMANN_TAG} could not be located.")
+if (fmt_FOUND)
+    message("-- Found fmt library.")
+    add_library(fmt_external INTERFACE)
+else()
+    message(STATUS "Fmt TAG: ${FMT_TAG} could not be located.")
     include(ExternalProject)
-    set(EXTERNAL_INSTALL_LOCATION ${STAGED_INSTALL_PREFIX}/nlohmann)
-    ExternalProject_Add(nlohmann_external
+    set(EXTERNAL_INSTALL_LOCATION ${STAGED_INSTALL_PREFIX}/fmt)
+    ExternalProject_Add(fmt_external
             PREFIX
                 ${EXTERNAL_INSTALL_LOCATION}
             GIT_REPOSITORY
-                ${NLOHMANN_URL}
+                ${FMT_URL}
             GIT_TAG
-                ${NLOHMANN_TAG}
+                ${FMT_TAG}
             GIT_SUBMODULES_RECURSE
                 1
             GIT_SHALLOW
@@ -38,18 +38,19 @@ else ()
                 -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
             CMAKE_CACHE_ARGS
                 -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS})
-    set(NLOHMANN_ROOT ${EXTERNAL_INSTALL_LOCATION}
-            CACHE PATH "Path to internally built nlohmann installation root"
+    set(FMT_ROOT ${EXTERNAL_INSTALL_LOCATION}
+            CACHE PATH "Path to internally built fmt installation root"
             FORCE)
-    set(NLOHMANN_INCLUDE_DIR ${NLOHMANN_ROOT}/include
-            CACHE PATH "Path to internally built nlohmann include directories"
+    set(FMT_INCLUDE_DIR ${FMT_ROOT}/include
+            CACHE PATH "Path to internally built fmt include directories"
             FORCE)
-    set(NLOHMANN_LIB_PATH ${NLOHMANN_ROOT}/lib
-            CACHE PATH "Path to internally built nlohmann library directories"
+    set(FMT_LIB_PATH ${FMT_ROOT}/lib
+            CACHE PATH "Path to internally built fmt library directories"
             FORCE)
-    set(NLOHMANN_CONFIG_DIR ${NLOHMANN_LIB_PATH}/cmake/nlohmann_json
-            CACHE PATH "Path to internally built nlohmann library config directories"
+    set(FMT_CONFIG_DIR ${FMT_LIB_PATH}/cmake/fmt
+            CACHE PATH "Path to internally built fmt library config directories"
             FORCE)
     # Unset internal variables
     unset(EXTERNAL_INSTALL_LOCATION)
 endif ()
+

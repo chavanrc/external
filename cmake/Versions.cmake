@@ -1,19 +1,32 @@
-set(BOOST_VERSION "1.73.0")
+set(BOOST_VERSION "1.74.0")
 string(REPLACE "." "_" BOOST_VERSION_UNDERSCORE ${BOOST_VERSION})
 
-#set(BOOST_URL "https://sourceforge.net/projects/boost/files/boost/${BOOST_VERSION}/boost_${BOOST_VERSION_UNDERSCORE}.tar.bz2/download")
-#set(BOOST_HASH "SHA1=6d6ed02b29c860fd21b274fc4e1f820855e765e9")
 set(BOOST_URL "https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_UNDERSCORE}.tar.bz2")
-set(BOOST_HASH "SHA256=4eb3b8d442b426dc35346235c8733b5ae35ba431690e38c6a8263dce9fcbb402")
-
-set(UWEBSOCKETS_URL "https://github.com/uNetworking/uWebSockets.git")
-set(UWEBSOCKETS_TAG "v18.6.0")
+set(BOOST_HASH "SHA256=83bfc1507731a0906e387fc28b7ef5417d591429e51e788417fe9ff025e116b1")
 
 set(CATCH_URL "https://github.com/catchorg/Catch2.git")
-set(CATCH_TAG "b1b5cb812277f367387844aab46eb2d3b15d03cd")
-
-set(NLOHMANN_URL "https://github.com/nlohmann/json.git")
-set(NLOHMANN_TAG "e7b3b40b5a95bc74b9a7f662830a27c49ffc01b4")
+set(CATCH_TAG "v3.0.0-preview3")
 
 set(SPDLOG_URL "https://github.com/gabime/spdlog.git")
-set(SPDLOG_TAG "22a169bc319ac06948e7ee0be6b9b0ac81386604")
+set(SPDLOG_TAG "v1.8.1")
+
+set(UNIVALUE_URL "https://github.com/jgarzik/univalue.git")
+set(UNIVALUE_TAG "v1.0.5")
+
+set(LIBEVENT_URL "https://github.com/libevent/libevent.git")
+set(LIBEVENT_TAG "release-2.1.12-stable")
+
+set(LIBEVHTP_URL "https://github.com/criticalstack/libevhtp.git")
+set(LIBEVHTP_TAG "1.2.18")
+
+set(RDKAFKA_URL "https://github.com/edenhill/librdkafka.git")
+set(RDKAFKA_TAG "v1.4.2")
+
+set(CPPKAFKA_URL "https://github.com/mfontanini/cppkafka.git")
+set(CPPKAFKA_TAG "origin/master")
+
+set(FMT_URL "https://github.com/fmtlib/fmt.git")
+set(FMT_TAG "7.0.3")
+
+set(SNAPPY_URL "https://github.com/google/snappy.git")
+set(SNAPPY_TAG "1.1.8")

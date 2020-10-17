@@ -29,17 +29,33 @@ add_subdirectory(catch)
 
 add_subdirectory(spdlog)
 
-add_subdirectory(nlohmann)
+add_subdirectory(univalue)
 
-add_subdirectory(uwebsockets)
+add_subdirectory(libevent)
+
+add_subdirectory(libevhtp)
+
+add_subdirectory(rdkafka)
+
+add_subdirectory(cppkafka)
+
+add_subdirectory(fmt)
+
+add_subdirectory(snappy)
 
 include(ExternalProject)
 ExternalProject_Add(dummy
         DEPENDS
+            boost_external
             catch_external
-            nlohmann_external
             spdlog_external
-            uwebsockets_external
+            univalue_external
+            libevent_external
+            libevhtp_external
+            rdkafka_external
+            cppkafka_external
+            fmt_external
+            snappy_external
         SOURCE_DIR
             ${CMAKE_CURRENT_LIST_DIR}/src
         CMAKE_ARGS
@@ -51,10 +67,8 @@ ExternalProject_Add(dummy
             -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
             -DCMAKE_PREFIX_PATH:PATH=${CMAKE_PREFIX_PATH};
                                      ${SPDLOG_CONFIG_DIR};
-            -DCMAKE_INCLUDE_PATH:PATH=${UWEBSOCKETS_INCLUDE_DIR};
-                                      ${SPDLOG_INCLUDE_DIR};
-            -DCMAKE_LIBRARY_PATH:PATH=${UWEBSOCKETS_LIB_PATH};
-                                      ${SPDLOG_LIB_PATH};
+            -DCMAKE_INCLUDE_PATH:PATH=${SPDLOG_INCLUDE_DIR};
+            -DCMAKE_LIBRARY_PATH:PATH=${SPDLOG_LIB_PATH};
         BUILD_ALWAYS
             1
         INSTALL_COMMAND
