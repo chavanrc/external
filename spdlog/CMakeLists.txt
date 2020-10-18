@@ -32,6 +32,8 @@ else ()
                 1
             UPDATE_COMMAND
                 ${CMAKE_NOOP}
+            PATCH_COMMAND
+                git apply ${CMAKE_CURRENT_LIST_DIR}/0001-custom-log-helpers.patch
             CMAKE_ARGS
                 -DCMAKE_INSTALL_PREFIX:PATH=${EXTERNAL_INSTALL_LOCATION}
                 -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
