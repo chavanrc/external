@@ -1,0 +1,94 @@
+Index: evhtp.pc.in
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- evhtp.pc.in	(revision f78d0a86778e277c75c8d0c14e7256bafb4b37e8)
++++ evhtp.pc.in	(date 1603530152506)
+@@ -1,6 +1,6 @@
+ prefix=@CMAKE_INSTALL_PREFIX@
+-libdir=@LIB_INSTALL_DIR@
+-includedir=@INCLUDE_INSTALL_DIR@/evhtp
++libdir=@libdir_for_pc_file@
++includedir=@includedir_for_pc_file@/evhtp
+ 
+ Name: libevhtp
+ Description: A more flexible replacement for libevent's httpd API
+Index: CMakeLists.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CMakeLists.txt	(revision f78d0a86778e277c75c8d0c14e7256bafb4b37e8)
++++ CMakeLists.txt	(date 1603534326196)
+@@ -15,6 +15,20 @@
+ include(CheckCCompilerFlag)
+ include(TestBigEndian)
+ 
++function(join_paths joined_path first_path_segment)
++    set(temp_path "${first_path_segment}")
++    foreach(current_segment IN LISTS ARGN)
++        if(NOT ("${current_segment}" STREQUAL ""))
++            if(IS_ABSOLUTE "${current_segment}")
++                set(temp_path "${current_segment}")
++            else()
++                set(temp_path "${temp_path}/${current_segment}")
++            endif()
++        endif()
++    endforeach()
++    set(${joined_path} "${temp_path}" PARENT_SCOPE)
++endfunction()
++
+ check_function_exists(strndup HAVE_STRNDUP)
+ check_function_exists(strnlen HAVE_STRNLEN)
+ 
+@@ -54,10 +68,10 @@
+     parser.c
+     log.c)
+ 
+-find_package(LibEvent REQUIRED)
++find_package(Libevent CONFIG REQUIRED)
+ list(APPEND LIBEVHTP_EXTERNAL_LIBS ${LIBEVENT_LIBRARIES})
+ list(APPEND LIBEVHTP_EXTERNAL_INCLUDES ${LIBEVENT_INCLUDE_DIRS})
+-list(APPEND package_deps LibEvent)
++list(APPEND package_deps Libevent)
+ 
+ set(evhtp_dir_headers
+   "include/evhtp/evhtp.h"
+@@ -220,8 +234,9 @@
+ #   * <prefix>/lib/cmake/<PROJECT-NAME>
+ #   * <prefix>/lib/
+ #   * <prefix>/include/
+-set(config_install_dir "lib/cmake/${PROJECT_NAME}")
+-set(include_install_dir "include")
++include(GNUInstallDirs)
++set(config_install_dir "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
++set(include_install_dir "${CMAKE_INSTALL_INCLUDEDIR}")
+ 
+ set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
+ 
+@@ -258,10 +273,10 @@
+ install(
+     TARGETS evhtp
+     EXPORT "${TARGETS_EXPORT_NAME}"
+-    LIBRARY DESTINATION "lib"
+-    ARCHIVE DESTINATION "lib"
+-    RUNTIME DESTINATION "bin"
+-    INCLUDES DESTINATION "${include_install_dir}"
++    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
++    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
++    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
++    INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+ )
+ 
+ # Headers:
+@@ -301,6 +316,9 @@
+     DESTINATION "${config_install_dir}"
+ )
+ 
++join_paths(libdir_for_pc_file "\${exec_prefix}" "${CMAKE_INSTALL_LIBDIR}")
++join_paths(includedir_for_pc_file "\${prefix}" "${CMAKE_INSTALL_INCLUDEDIR}")
++
+ configure_file(
+     ${CMAKE_CURRENT_SOURCE_DIR}/evhtp.pc.in
+     ${CMAKE_CURRENT_BINARY_DIR}/evhtp.pc @ONLY)

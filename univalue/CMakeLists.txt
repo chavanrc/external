@@ -33,7 +33,7 @@ else ()
             UPDATE_COMMAND
                 ${CMAKE_NOOP}
             CONFIGURE_COMMAND
-                <SOURCE_DIR>/autogen.sh COMMAND <SOURCE_DIR>/configure
+                <SOURCE_DIR>/autogen.sh COMMAND <SOURCE_DIR>/configure --prefix=${EXTERNAL_INSTALL_LOCATION}
             BUILD_IN_SOURCE
                 1
             BUILD_COMMAND
@@ -49,7 +49,7 @@ else ()
     set(UNIVALUE_LIB_PATH ${UNIVALUE_ROOT}/lib
             CACHE PATH "Path to internally built univalue library directories"
             FORCE)
-    set(UNIVALUE_CONFIG_DIR ${UNIVALUE_LIB_PATH}/pkgconfig
+    set(UNIVALUE_CONFIG_DIR ${UNIVALUE_ROOT}
             CACHE PATH "Path to internally built univalue library config directories"
             FORCE)
     # Unset internal variables

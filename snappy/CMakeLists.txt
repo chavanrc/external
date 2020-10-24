@@ -47,7 +47,7 @@ else ()
     set(SNAPPY_LIB_PATH ${SNAPPY_ROOT}/lib
             CACHE PATH "Path to internally built snappy library directories"
             FORCE)
-    set(SNAPPY_CONFIG_DIR ${SNAPPY_LIB_PATH}/cmake/snappy
+    set(SNAPPY_CONFIG_DIR ${SNAPPY_LIB_PATH}/cmake/Snappy
             CACHE PATH "Path to internally built snappy library config directories"
             FORCE)
     # Unset internal variables

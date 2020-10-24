@@ -35,7 +35,7 @@ else ()
             UPDATE_COMMAND
                 ${CMAKE_NOOP}
             PATCH_COMMAND
-                git apply ${CMAKE_CURRENT_LIST_DIR}/Find_libevent.patch
+                git apply ${CMAKE_CURRENT_LIST_DIR}/Find_config.patch
             CMAKE_ARGS
                 -DCMAKE_INSTALL_PREFIX:PATH=${EXTERNAL_INSTALL_LOCATION}
                 -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
@@ -54,7 +54,7 @@ else ()
     set(LIBEVHTP_LIB_PATH ${LIBEVHTP_ROOT}/lib
             CACHE PATH "Path to internally built libevhtp library directories"
             FORCE)
-    set(LIBEVHTP_CONFIG_DIR ${LIBEVHTP_LIB_PATH}/cmake/libevhtp
+    set(LIBEVHTP_CONFIG_DIR ${LIBEVHTP_ROOT}
             CACHE PATH "Path to internally built libevhtp library config directories"
             FORCE)
     # Unset internal variables
