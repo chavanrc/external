@@ -33,3 +33,6 @@ set(SNAPPY_TAG "1.1.8")
 
 set(ONIGURUMA_URL "https://github.com/kkos/oniguruma.git")
 set(ONIGURUMA_TAG "v6.9.5_rev1")
+
+set(ONIGURUMA_URL "https://github.com/kkos/oniguruma.git")
+set(ONIGURUMA_TAG "v6.9.5_rev1")
