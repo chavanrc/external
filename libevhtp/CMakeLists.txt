@@ -54,7 +54,7 @@ else ()
     set(LIBEVHTP_LIB_PATH ${LIBEVHTP_ROOT}/lib
             CACHE PATH "Path to internally built libevhtp library directories"
             FORCE)
-    set(LIBEVHTP_CONFIG_DIR ${LIBEVHTP_LIB_PATH}/cmake/libevhtp
+    set(LIBEVHTP_CONFIG_DIR ${LIBEVHTP_ROOT}
             CACHE PATH "Path to internally built libevhtp library config directories"
             FORCE)
     # Unset internal variables

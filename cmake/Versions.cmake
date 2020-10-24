@@ -5,7 +5,7 @@ set(BOOST_URL "https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/b
 set(BOOST_HASH "SHA256=83bfc1507731a0906e387fc28b7ef5417d591429e51e788417fe9ff025e116b1")
 
 set(CATCH_URL "https://github.com/catchorg/Catch2.git")
-set(CATCH_TAG "v3.0.0-preview3")
+set(CATCH_TAG "v2.13.2")
 
 set(SPDLOG_URL "https://github.com/gabime/spdlog.git")
 set(SPDLOG_TAG "v1.8.1")
