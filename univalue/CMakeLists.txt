@@ -33,7 +33,7 @@ else ()
             UPDATE_COMMAND
                 ${CMAKE_NOOP}
             CONFIGURE_COMMAND
-                <SOURCE_DIR>/autogen.sh COMMAND <SOURCE_DIR>/configure --prefix=${EXTERNAL_INSTALL_LOCATION}
+                <SOURCE_DIR>/autogen.sh COMMAND <SOURCE_DIR>/configure --prefix=${EXTERNAL_INSTALL_LOCATION} --enable-shared=no
             BUILD_IN_SOURCE
                 1
             BUILD_COMMAND
